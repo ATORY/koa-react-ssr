@@ -6,7 +6,7 @@ import { incAction, decAction } from '../redux/actions';
 const App = ({ count, incAction, decAction }) => {
   return (
     <div>
-      {`Counter ${count}`}
+      {`----++++++++--Counter ${count}`}
       <button onClick={incAction}>inc</button>
       <button onClick={decAction}>dec</button>
     </div>
@@ -15,7 +15,7 @@ const App = ({ count, incAction, decAction }) => {
 
 const mapStateToProps = (state, ownProps) => ({
     count: state.count
-})
+});
 
 export default connect(
     mapStateToProps,

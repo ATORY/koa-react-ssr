@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 // console.log(__dirname)
 module.exports = [
   {
-    mode: "production",
+    mode: process.env.NODE_ENV || "production",
     entry: {
       bundle: path.resolve(__dirname, "../client/index.js")
     },
@@ -44,7 +44,7 @@ module.exports = [
       // ... other plugins
       new webpack.SourceMapDevToolPlugin({
         // this is the url of our local sourcemap server
-        publicPath: "http://localhost:4321/dist/",
+        publicPath: "http://localhost:9876/dist/",
         filename: "[file].map"
       })
     ]

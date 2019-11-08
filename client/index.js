@@ -24,3 +24,22 @@ hydrate(
   </Provider>,
   document.getElementById('root')
 );
+
+if (process.env.NODE_ENV === 'development') {
+
+
+const socket = new WebSocket('ws://localhost:9876');
+
+// Connection opened
+socket.addEventListener('open', function (event) {
+    socket.send('Hello Server!');
+});
+
+// Listen for messages
+socket.addEventListener('message', function (event) {
+    console.log('Message from server ', event.data);
+    if (event.data === 'reload') {
+        location.reload(true);
+    }
+});
+};

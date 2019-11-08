@@ -13,9 +13,13 @@ router.get('/', async ctx => {
 
 module.exports = router;
 
-const files = fs.readdirSync(path.join(__dirname, '../dist')).filter((file) => file.endsWith('js'));
-const scripts = files.map(file => `<script src="/dist/${file}"></script>`).join('<br/>')
+
 function renderFullPage({title = 'TheDeployer', styleTags, html, preloadedState}) {
+    const files = fs.readdirSync(path.join(__dirname, '../dist')).filter((file) => file.endsWith('js'));
+    const scripts = files.map(file => {
+        // console.log('load js file')
+        return `<script src="/dist/${file}"></script>`
+    }).join('<br/>')
   return `
     <!doctype html>
     <html>
