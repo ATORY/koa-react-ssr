@@ -3,7 +3,6 @@ const fs = require('fs-extra');
 const Watchpack = require("watchpack");
 const webpack = require('webpack');
 const webpakConfig = require('./webpack.config');
-const app = require('../app');
 
 
 const compiler = webpack(webpakConfig);
@@ -33,12 +32,15 @@ async function build() {
 
     fs.emptyDirSync(path.resolve(__dirname, '../dist'));
     await new Promise((resolve, reject) => {
-        compiler.run((err, stats) => {
-            // console.log(err, stats)
+        compiler.run((err, {stats}) => {
+            // console.log(err)
+            // stats.map(item => console.log(item))
             if (err) reject(err)
             else resolve(stats)
         });
     });
+    console.log('build end')
+    
     if (appfd) {
         await new Promise((resolve, reject) => {
             appfd.close((err) => {
@@ -46,8 +48,11 @@ async function build() {
                 else resolve()
             })
         }) 
+        delete require.cache[require.resolve('../app')]
     }
+    const app = require('../app');
     appfd = app.listen(9876, () => {
-        // console.log({appfd})
+        console.log('server start')
     })
+    
 }
