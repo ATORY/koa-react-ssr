@@ -8,12 +8,12 @@ class Validator {
   }
 
   check() {
-    this.fields.forEach(({field, required = false}) => {
+    this.fields.forEach(({ field, required = false }) => {
       const value = this.param[field];
       if (!required) return;
       if (!value) {
         this.errors.push({
-          msg: `${field} is empty`
+          msg: `${field} is empty`,
         });
       }
     });

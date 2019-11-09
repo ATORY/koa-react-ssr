@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
 
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
+export const INCREMENT = 'INCREMENT';
+export const DECREMENT = 'DECREMENT';
 
-export const incAction = (data) => (dispatch, getState) => {
+export const incAction = () => (dispatch, getState) => {
   dispatch({
-    type: INCREMENT
-  })
-}
+    type: INCREMENT,
+  });
+};
 
 export const decAction = (data) => (dispatch, getState) => {
   dispatch({
-    type: DECREMENT
-  })
-}
+    type: DECREMENT,
+  });
+};
